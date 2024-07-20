@@ -7,5 +7,9 @@ db.exec(`CREATE TABLE IF NOT EXISTS pictures (
     path TEXT
 )`);
 
-module.exports = db;
+function saveFileInfo(filename, filepath) {
+    const stmt = db.prepare('INSERT INTO pictures (name, path) VALUES (?, ?)');
+    stmt.run(filename, filepath);
+}
 
+module.exports = db;
